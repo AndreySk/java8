@@ -5,6 +5,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -17,7 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class SimpleLambdaTest {
     List<Integer> list;
 
-    private static final int NUM_ELEMENTS = 100;
+    private static final int NUM_ELEMENTS = 10000;
     static int[] array;
 
     @BeforeClass
@@ -40,6 +41,15 @@ public class SimpleLambdaTest {
     private boolean checkSorting(List<Integer> reversiblySortedList) {
         for (int i = 0; i < reversiblySortedList.size() - 1; i++) {
             if (reversiblySortedList.get(i) < reversiblySortedList.get(i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkSorting(Integer[] array) {
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] < array[i + 1]) {
                 return false;
             }
         }
@@ -105,6 +115,18 @@ public class SimpleLambdaTest {
     }
 
     @Test
+    public void java8ArraysParallelSorting() {
+
+        Integer[] arr = new Integer[array.length];
+        for (int i=0; i<array.length; i++) {
+            arr[i] = array[i];
+        }
+        //Arrays.sort(arr);
+        Arrays.parallelSort(arr, (o1, o2) -> -o1 + o2);
+        assertTrue(checkSorting(arr));
+    }
+
+    @Test
     public void createThreadJava7() throws InterruptedException {
         Thread th = new Thread(new Runnable() {
             @Override
@@ -143,31 +165,6 @@ public class SimpleLambdaTest {
         th.join();
     }
 
-    @FunctionalInterface
-    private interface ActionI {
-        void action();
-    }
-    private class MyAction {
-        public MyAction() {
-            System.out.println("Constructor");
-        }
 
-        public void myTestAction() {
-            System.out.println("Action 1");
-        }
-    }
-
-    @Test
-    public void functionalInterface() {
-
-        ActionI actionMethodRef = new MyAction()::myTestAction; // method reference
-        ActionI actionConstructorRef = MyAction::new; // constructor reference
-        ActionI actionLambda = () -> System.out.println("lambda");
-
-        actionMethodRef.action();
-        actionConstructorRef.action();
-        actionLambda.action();
-
-    }
 
 }

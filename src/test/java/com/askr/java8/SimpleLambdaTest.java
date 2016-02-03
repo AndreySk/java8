@@ -167,6 +167,7 @@ public class SimpleLambdaTest {
         actionMethodRef.action();
         actionConstructorRef.action();
         actionLambda.action();
+
     }
 
 }

@@ -3,6 +3,11 @@ package com.askr.java8;
 
 import org.junit.Test;
 
+import java.util.function.Predicate;
+
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 public class FunctionalInterfaceTest {
 
     @FunctionalInterface
@@ -50,8 +55,31 @@ public class FunctionalInterfaceTest {
 
     @Test
     public void functionalInterfaceDefault() {
+        DefaultImplI i = () -> System.out.println("action1");
+        i.action1();
+    }
 
-       DefaultImplI i = () -> System.out.println("action1");
+    @Test
+    public void predicateTest() {
+        Predicate<Integer> isEvenJava7Style = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                return integer % 2 == 0;
+            }
+        };
 
+        Predicate<Integer> isEvenJava8Style = (n) -> n%2 == 0;
+
+        assertTrue(isEvenJava7Style.test(2));
+        assertTrue(isEvenJava8Style.test(2));
+        assertFalse(isEvenJava7Style.test(3));
+        assertFalse(isEvenJava8Style.test(3));
+
+        Predicate<Integer> notEven = isEvenJava8Style.negate();
+        assertTrue(notEven.test(3));
+        assertFalse(notEven.test(2));
+
+        assertTrue(isEvenJava8Style.or(notEven).test(1));
+        assertTrue(isEvenJava8Style.or(notEven).test(2));
     }
 }

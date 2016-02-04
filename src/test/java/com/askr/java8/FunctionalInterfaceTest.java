@@ -3,6 +3,7 @@ package com.askr.java8;
 
 import org.junit.Test;
 
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 import static org.junit.Assert.assertFalse;
@@ -23,7 +24,7 @@ public class FunctionalInterfaceTest {
             System.out.println("Constructor");
         }
 
-        public void myTestAction() {
+        private void myTestAction() {
             System.out.println("Method");
         }
     }
@@ -82,4 +83,13 @@ public class FunctionalInterfaceTest {
         assertTrue(isEvenJava8Style.or(notEven).test(1));
         assertTrue(isEvenJava8Style.or(notEven).test(2));
     }
+
+    @Test
+    public void functionTest() {
+        Function<Integer, Boolean> isPositiveFunc = (a) -> a>0;
+        Predicate<Integer> isPositivePredicate = isPositiveFunc::apply;
+        assertTrue(isPositivePredicate.test(12));
+        assertTrue(isPositiveFunc.apply(12));
+    }
+
 }

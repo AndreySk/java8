@@ -24,7 +24,7 @@ public class FunctionalInterfaceTest {
     }
 
     @Test
-    public void createFunctionalInterfaceInstance() {
+    public void functionalInterface() {
 
         ActionI actionMethodRef = new MyAction(0)::myTestAction; // method reference
         ActionI actionConstructorRef = MyAction::new; // constructor reference
@@ -47,23 +47,11 @@ public class FunctionalInterfaceTest {
 
         //void action2(int a);
     }
-    interface DefaultImplI2 extends DefaultImplI {
-        @Override
-        default void defaultAction() {};
-    }
-
-    class DefaultC implements DefaultImplI2 {
-        @Override
-        public void action1() {
-
-        }
-    }
 
     @Test
     public void functionalInterfaceDefault() {
 
        DefaultImplI i = () -> System.out.println("action1");
-        DefaultImplI i2 = new DefaultC();
-        i2.defaultAction();
+
     }
 }

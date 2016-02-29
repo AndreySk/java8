@@ -16,7 +16,7 @@ import java.util.stream.IntStream;
 import static org.junit.Assert.assertTrue;
 
 public class SimpleLambdaTest {
-    List<Integer> list;
+    private List<Integer> list;
 
     private static final int NUM_ELEMENTS = 10000;
     static int[] array;

@@ -40,18 +40,6 @@ public class FunctionalInterfaceTest {
         ActionI actionConstructorRef = MyAction::new; // constructor reference
         ActionI actionLambda = () -> System.out.println("lambda");
 
-        Runnable r = () -> System.out.println("lambda");
-        Comparator<Integer> c = (Integer a, Integer b) -> a - b;
-        IntPredicate isPositive = ((int i) -> {
-            return i > 0;
-        });
-        isPositive = isPositive.and((i) -> i>0);
-
-        DoubleBinaryOperator average = (a, b) -> {
-            return (a + b) / 2;
-        };
-
-
         ActionI[] actions = new ActionI[] {actionMethodRef, actionConstructorRef, actionLambda};
 
         for (ActionI action: actions) {

@@ -126,6 +126,9 @@ public class SimpleLambdaTest {
         assertTrue(checkSorting(arr));
     }
 
+
+
+
     @Test
     public void createThreadJava7() throws InterruptedException {
         Thread th = new Thread(new Runnable() {

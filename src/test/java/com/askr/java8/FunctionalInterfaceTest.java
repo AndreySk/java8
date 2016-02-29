@@ -3,7 +3,11 @@ package com.askr.java8;
 
 import org.junit.Test;
 
+import java.awt.event.ActionListener;
+import java.util.Comparator;
+import java.util.function.DoubleBinaryOperator;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
 import static org.junit.Assert.assertFalse;
@@ -35,6 +39,18 @@ public class FunctionalInterfaceTest {
         ActionI actionMethodRef = new MyAction(0)::myTestAction; // method reference
         ActionI actionConstructorRef = MyAction::new; // constructor reference
         ActionI actionLambda = () -> System.out.println("lambda");
+
+        Runnable r = () -> System.out.println("lambda");
+        Comparator<Integer> c = (Integer a, Integer b) -> a - b;
+        IntPredicate isPositive = ((int i) -> {
+            return i > 0;
+        });
+        isPositive = isPositive.and((i) -> i>0);
+
+        DoubleBinaryOperator average = (a, b) -> {
+            return (a + b) / 2;
+        };
+
 
         ActionI[] actions = new ActionI[] {actionMethodRef, actionConstructorRef, actionLambda};
 

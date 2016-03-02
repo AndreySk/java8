@@ -36,6 +36,12 @@ public class FunctionalInterfaceTest {
     @Test
     public void functionalInterface() {
 
+        ActionI act = new ActionI() {
+            @Override
+            public void action() {
+
+            }
+        };
         ActionI actionMethodRef = new MyAction(0)::myTestAction; // method reference
         ActionI actionConstructorRef = MyAction::new; // constructor reference
         ActionI actionLambda = () -> System.out.println("lambda");

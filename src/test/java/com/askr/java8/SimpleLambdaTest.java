@@ -163,11 +163,9 @@ public class SimpleLambdaTest {
 
     @Test
     public void createThreadJava8_2() throws InterruptedException {
-        Thread th = new Thread(() -> IntStream.range(0, 10).forEach((v) ->  System.out.println(v)));
+        Thread th = new Thread(() -> IntStream.range(0, 10).forEach(v ->  System.out.println(v)));
         th.start();
         th.join();
     }
-
-
 
 }

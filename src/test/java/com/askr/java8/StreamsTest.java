@@ -83,12 +83,6 @@ public class StreamsTest {
         assertEquals(actualN, n);
     }
 
-    @Test
-    public void java7() {
-
-    }
-
-
     private static Comparator<String> addrComparator = (i1, i2) -> -Integer.decode(i1.replace(SUBNET_PREFIX, "")).compareTo(Integer.decode(i2.replace(SUBNET_PREFIX, "")));
 
     @Test
@@ -102,4 +96,28 @@ public class StreamsTest {
 
         assertTrue(checkResult(ipv4s));
     }
+
+//    @Test
+//    public void uncaughtHandlerTest() throws InterruptedException {
+//        Thread.currentThread().setUncaughtExceptionHandler((t, e) -> {
+//            System.out.println("error 0");
+//            System.out.println("Uncaught handler 0: " + e.toString());
+//        });
+//        System.out.println("aa");
+//
+//
+//
+//        Thread t = new Thread(() -> {
+//            System.out.println("starts");
+//            throw new RuntimeException("test ex");
+//        });
+//        t.setUncaughtExceptionHandler((t1, e) -> {
+//            System.out.println("error 1");
+//            System.out.println("Uncaught handler 1: " + e.toString());
+//        });
+//        t.start();
+//        t.join();
+//        throw new RuntimeException("as");
+//    }
+
 }
